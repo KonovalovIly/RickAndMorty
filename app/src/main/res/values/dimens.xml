@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="padding_text_view">4dp</dimen>
+    <dimen name="elevation_card_view">8dp</dimen>
+    <dimen name="corner_radius_card_view">8dp</dimen>
+    <dimen name="margin_card_view">4dp</dimen>
+</resources>
