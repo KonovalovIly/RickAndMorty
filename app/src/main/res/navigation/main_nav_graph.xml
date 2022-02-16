@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/characterListFragment">
+
+    <fragment
+        android:id="@+id/characterListFragment"
+        android:name="ru.konovalovily.rickandmorty.presentation.characters.CharacterListFragment"
+        android:label="fragment_character_list"
+        tools:layout="@layout/fragment_character_list" >
+        <action
+            android:id="@+id/action_characterListFragment_to_characterDescriptionFragment"
+            app:destination="@id/characterDescriptionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/characterDescriptionFragment"
+        android:name="ru.konovalovily.rickandmorty.presentation.characterdetail.CharacterDescriptionFragment"
+        android:label="fragment_character_description"
+        tools:layout="@layout/fragment_character_description" >
+        <argument
+            android:name="characterId"
+            app:argType="integer" />
+    </fragment>
+</navigation>

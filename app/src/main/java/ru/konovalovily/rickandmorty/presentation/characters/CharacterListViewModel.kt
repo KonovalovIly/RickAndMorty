@@ -1,4 +1,4 @@
-package ru.konovalovily.rickandmorty.presentation
+package ru.konovalovily.rickandmorty.presentation.characters
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -20,6 +20,10 @@ class CharacterListViewModel(repository: LoadingRepository) : ViewModel() {
 
     private val page = 1
 
+    private val _error = MutableLiveData<Throwable>()
+    val error: LiveData<Throwable>
+        get() = _error
+
     private val getCharacterListUseCase = GetCharacterListUseCase(repository)
 
     fun getCharacters() {
@@ -27,10 +31,8 @@ class CharacterListViewModel(repository: LoadingRepository) : ViewModel() {
             val result = withContext(Dispatchers.IO) {
                 runCatching { getCharacterListUseCase.invoke(page) }
             }
-            result.onSuccess {
-                _characterList.value = it
-                Log.d("VIEW", it.toString())
-            }
+            result.onSuccess { _characterList.value = it }
+            result.onFailure { _error.value = it }
         }
     }
 

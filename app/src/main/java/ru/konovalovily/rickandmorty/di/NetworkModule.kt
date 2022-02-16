@@ -1,4 +1,4 @@
-package ru.konovalovily.rickandmorty.data.di
+package ru.konovalovily.rickandmorty.di
 
 import org.koin.dsl.module
 import retrofit2.Retrofit

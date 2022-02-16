@@ -5,4 +5,7 @@ import ru.konovalovily.rickandmorty.domain.entity.Character
 interface LoadingRepository {
 
     suspend fun getCharactersList(page: Int): List<Character>
+
+    suspend fun getCharacter(characterId: Int): Character
+
 }
