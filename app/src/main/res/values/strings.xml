@@ -2,5 +2,6 @@
     <string name="app_name">Rick and Morty</string>
     <string name="character_name">Name</string>
     <string name="character_image_description">Character Image</string>
-    <string name="loading_error">Loading error has occurred</string>
+    <string name="loading_error">Loading error has occurred. Turn on the Internet, and try again.</string>
+    <string name="restart_loading">Restart Loading</string>
 </resources>

@@ -31,7 +31,6 @@ class CharacterDescriptionViewModel(repository: LoadingRepository) : ViewModel()
             result.onSuccess { _characterInfo.value = it }
             result.onFailure { _error.value = it }
         }
-
     }
 
 }

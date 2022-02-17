@@ -1,4 +1,4 @@
-package ru.konovalovily.rickandmorty.presentation.adapter
+package ru.konovalovily.rickandmorty.presentation.characters.adapter
 
 import androidx.recyclerview.widget.DiffUtil
 import ru.konovalovily.rickandmorty.domain.entity.Character

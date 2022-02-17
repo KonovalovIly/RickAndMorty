@@ -4,4 +4,5 @@
     <dimen name="elevation_card_view">8dp</dimen>
     <dimen name="corner_radius_card_view">8dp</dimen>
     <dimen name="margin_card_view">4dp</dimen>
+    <dimen name="error_message_padding">50dp</dimen>
 </resources>

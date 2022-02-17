@@ -1,18 +1,18 @@
-package ru.konovalovily.rickandmorty.presentation.adapter
+package ru.konovalovily.rickandmorty.presentation.characters.adapter
 
 import android.view.LayoutInflater
 import coil.load
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.recyclerview.widget.ListAdapter
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.card.MaterialCardView
 import ru.konovalovily.rickandmorty.databinding.CharacterItemBinding
 import ru.konovalovily.rickandmorty.domain.entity.Character
 
 class CharacterListAdapter :
-    ListAdapter<Character, CharacterListAdapter.ViewHolder>(CharacterItemDiffCallback()) {
+    PagingDataAdapter<Character, CharacterListAdapter.ViewHolder>(CharacterItemDiffCallback()) {
 
     var onClick: ((characterId: Int) -> Unit)? = null
 
@@ -27,7 +27,7 @@ class CharacterListAdapter :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        getItem(position)?.let { holder.bind(it) }
     }
 
     inner class ViewHolder(binding: CharacterItemBinding) :
