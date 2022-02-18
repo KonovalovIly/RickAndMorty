@@ -39,6 +39,20 @@
             app:layout_constraintStart_toStartOf="parent"
             tools:text="@string/character_name" />
 
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_card_view"
+            android:drawableStart="@drawable/ic_status_circle"
+            android:drawablePadding="@dimen/circle_drawable_padding"
+            android:gravity="center"
+            android:textSize="@dimen/text_size_status"
+            app:layout_constraintEnd_toEndOf="@id/iv_character_profile"
+            app:layout_constraintTop_toTopOf="@id/iv_character_profile"
+            app:lineHeight="14dp"
+            tools:drawableTint="@color/green_700"
+            tools:text="Alive" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

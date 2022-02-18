@@ -1,5 +1,6 @@
 package ru.konovalovily.rickandmorty.presentation.characterdetail
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -44,6 +45,23 @@ class CharacterDescriptionFragment : Fragment() {
             binding.apply {
                 ivCharacterProfile.load(it.image)
                 tvCharacterName.text = it.name
+                setStatus(it.status)
+            }
+        }
+    }
+
+    private fun setStatus(status: String) {
+        with(binding) {
+            when (status) {
+                "Alive" -> {
+                    tvStatus.text = status
+                }
+                "Dead" -> {
+                    tvStatus.text = status
+                }
+                "unknown" -> {
+                    tvStatus.text = status
+                }
             }
         }
     }

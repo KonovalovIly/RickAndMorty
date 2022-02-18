@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import ru.konovalovily.rickandmorty.domain.LoadingRepository
@@ -37,7 +38,7 @@ class CharacterListViewModel(repository: LoadingRepository) : ViewModel() {
 
     fun getCharacters() {
         viewModelScope.launch {
-            val result = kotlin.runCatching { getCharacterListUseCase.invoke() }
+            val result = kotlin.runCatching { getCharacterListUseCase.invoke().cachedIn(viewModelScope) }
             result.onSuccess { _characterList = it }
             result.onFailure { _error.value = it }
         }
