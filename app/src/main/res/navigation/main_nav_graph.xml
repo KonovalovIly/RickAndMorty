@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_characterListFragment_to_characterDescriptionFragment"
             app:destination="@id/characterDescriptionFragment" />
+        <action
+            android:id="@+id/action_characterListFragment_to_episodeListFragment"
+            app:destination="@id/episodeListFragment" />
     </fragment>
     <fragment
         android:id="@+id/characterDescriptionFragment"
@@ -22,5 +25,18 @@
         <argument
             android:name="characterId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_characterDescriptionFragment_to_episodeListFragment"
+            app:destination="@id/episodeListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/episodeListFragment"
+        android:name="ru.konovalovily.rickandmorty.presentation.episode.EpisodeListFragment"
+        android:label="fragment_episode_list"
+        tools:layout="@layout/fragment_episode_list" >
+        <argument
+            android:name="episodesList"
+            app:argType="string[]"
+            app:nullable="true" />
     </fragment>
 </navigation>

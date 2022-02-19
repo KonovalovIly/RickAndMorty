@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import coil.load
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -20,6 +21,7 @@ class CharacterDescriptionFragment : Fragment() {
     private val args by navArgs<CharacterDescriptionFragmentArgs>()
 
     private val viewModel: CharacterDescriptionViewModel by viewModel()
+    private var episodesList: Array<String>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,6 +35,16 @@ class CharacterDescriptionFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         getCharacterResponse()
         observeViewModel()
+        setListeners()
+    }
+
+    private fun setListeners() {
+        binding.buttonEpisodes.setOnClickListener {
+            findNavController().navigate(
+                CharacterDescriptionFragmentDirections
+                    .actionCharacterDescriptionFragmentToEpisodeListFragment(episodesList)
+            )
+        }
     }
 
     private fun getCharacterResponse() {
@@ -49,6 +61,7 @@ class CharacterDescriptionFragment : Fragment() {
                 tvCharacterFragmentSpecies.text = it.species
                 tvCharacterFragmentLocation.text = it.location.name
                 viewModel.endLoading()
+                episodesList = it.episode.toTypedArray()
             }
         }
         viewModel.loading.observe(this) {

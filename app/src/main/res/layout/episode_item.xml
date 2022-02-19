@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="@dimen/elevation_card_view"
+    app:cardCornerRadius="@dimen/corner_radius_card_view"
+    android:layout_margin="@dimen/margin_card_view">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_card_view">
+
+        <TextView
+            android:id="@+id/tv_title_episode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_text_view"
+            app:layout_constraintTop_toBottomOf="@id/tv_number_episode"
+            android:textStyle="bold"
+            tools:text="Pilot" />
+
+        <TextView
+            android:id="@+id/tv_number_episode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_text_view"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="S01E01" />
+
+        <TextView
+            android:id="@+id/tv_date_episode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_text_view"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="December 2, 2013" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
