@@ -1,6 +1,5 @@
 package ru.konovalovily.rickandmorty.presentation.characters
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -26,6 +25,16 @@ class CharacterListFragment : Fragment() {
 
     private val viewModel: CharacterListViewModel by viewModel()
     private val characterAdapter: CharacterListAdapter = CharacterListAdapter()
+
+    private val snackbar: Snackbar by lazy {
+        Snackbar.make(
+            binding.root,
+            R.string.loading_error,
+            Snackbar.LENGTH_INDEFINITE
+        ).apply {
+            setAction(R.string.ok) { requireActivity().finish() }
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,16 +66,13 @@ class CharacterListFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        viewModel.progress.observe(this) {
-            setProgressBarVisible(it)
-        }
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.characterList.collectLatest {
                 characterAdapter.submitData(it)
             }
         }
-        viewModel.loadError.observe(this){
-            setErrorMessageVisible(it)
+        viewModel.error.observe(this) {
+            binding.errorMessage.text = it.message
         }
     }
 
@@ -78,36 +84,14 @@ class CharacterListFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             characterAdapter.loadStateFlow.collectLatest {
                 when (it.refresh) {
-                    is LoadState.Loading -> {
-                        viewModel.startLoad()
-                        viewModel.endError()
-                    }
-                    is LoadState.NotLoading -> viewModel.endLoad()
-                    is LoadState.Error -> {
-                        viewModel.loadError()
-                        viewModel.endLoad()
-                    }
+                    is LoadState.Loading -> binding.pbCharacterLoading.visibility = View.VISIBLE
+                    is LoadState.NotLoading -> binding.pbCharacterLoading.visibility = View.GONE
+                    is LoadState.Error -> snackbar.show()
                 }
             }
         }
     }
 
-    private fun setProgressBarVisible(state: Boolean){
-        if (state) binding.pbCharacterLoading.visibility = View.VISIBLE
-        else binding.pbCharacterLoading.visibility = View.GONE
-    }
-
-    @SuppressLint("ShowToast")
-    private fun setErrorMessageVisible(state: Boolean){
-        val snackbar = Snackbar.make(
-            binding.rvCharacterList,
-            R.string.loading_error,
-            Snackbar.LENGTH_INDEFINITE
-        )
-        snackbar.setAction(R.string.restart_loading) { viewModel.getCharacters() }
-        if (state) snackbar.show()
-        else snackbar.dismiss()
-    }
 
     override fun onDestroy() {
         super.onDestroy()

@@ -22,42 +22,19 @@ class CharacterListViewModel(repository: LoadingRepository) : ViewModel() {
     val error: LiveData<Throwable>
         get() = _error
 
-    private val _progress = MutableLiveData<Boolean>()
-    val progress: LiveData<Boolean>
-        get() = _progress
-
-    private val _loadError = MutableLiveData<Boolean>()
-    val loadError: LiveData<Boolean>
-        get() = _loadError
-
     private val getCharacterListUseCase = GetCharacterListUseCase(repository)
 
     init {
         getCharacters()
     }
 
-    fun getCharacters() {
+    private fun getCharacters() {
         viewModelScope.launch {
-            val result = kotlin.runCatching { getCharacterListUseCase.invoke().cachedIn(viewModelScope) }
+            val result =
+                kotlin.runCatching { getCharacterListUseCase.invoke().cachedIn(viewModelScope) }
             result.onSuccess { _characterList = it }
             result.onFailure { _error.value = it }
         }
-    }
-
-    fun startLoad(){
-        _progress.value = true
-    }
-
-    fun endLoad(){
-        _progress.value = false
-    }
-
-    fun loadError(){
-        _loadError.value = true
-    }
-
-    fun endError(){
-        _loadError.value = false
     }
 
 }

@@ -7,11 +7,12 @@ import kotlinx.coroutines.flow.Flow
 import ru.konovalovily.rickandmorty.data.paging.RickAndMortyPagingSource
 import ru.konovalovily.rickandmorty.domain.LoadingRepository
 import ru.konovalovily.rickandmorty.domain.entity.Character
+import ru.konovalovily.rickandmorty.domain.entity.Constants.PAGE_SIZE
 
 class LoadingRepositoryImpl(private val api: CharacterApi) : LoadingRepository {
 
     override suspend fun getCharactersList(): Flow<PagingData<Character>> =
-        Pager(PagingConfig(1)) {
+        Pager(PagingConfig(PAGE_SIZE)) {
             RickAndMortyPagingSource(api)
         }.flow
 

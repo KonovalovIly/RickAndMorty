@@ -3,5 +3,10 @@
     <string name="character_name">Name</string>
     <string name="character_image_description">Character Image</string>
     <string name="loading_error">Loading error has occurred. Turn on the Internet, and try again.</string>
-    <string name="restart_loading">Restart Loading</string>
+    <string name="status">Status:</string>
+    <string name="species">Species:</string>
+    <string name="gender">Gender:</string>
+    <string name="location">Location:</string>
+    <string name="episode_with_character">Episode with character</string>
+    <string name="ok">OK</string>
 </resources>

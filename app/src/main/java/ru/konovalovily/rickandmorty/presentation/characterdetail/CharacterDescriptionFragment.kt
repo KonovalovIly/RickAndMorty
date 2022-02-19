@@ -1,6 +1,5 @@
 package ru.konovalovily.rickandmorty.presentation.characterdetail
 
-import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -45,24 +44,28 @@ class CharacterDescriptionFragment : Fragment() {
             binding.apply {
                 ivCharacterProfile.load(it.image)
                 tvCharacterName.text = it.name
-                setStatus(it.status)
+                tvCharacterFragmentStatus.text = it.status
+                tvCharacterFragmentGender.text = it.gender
+                tvCharacterFragmentSpecies.text = it.species
+                tvCharacterFragmentLocation.text = it.location.name
+                viewModel.endLoading()
             }
+        }
+        viewModel.loading.observe(this) {
+            loading(it)
+        }
+        viewModel.error.observe(this) {
+            binding.errorMessage.visibility = View.VISIBLE
+            binding.pbCharacterDetailLoading.visibility = View.INVISIBLE
         }
     }
 
-    private fun setStatus(status: String) {
-        with(binding) {
-            when (status) {
-                "Alive" -> {
-                    tvStatus.text = status
-                }
-                "Dead" -> {
-                    tvStatus.text = status
-                }
-                "unknown" -> {
-                    tvStatus.text = status
-                }
-            }
+    private fun loading(state: Boolean) {
+        if (state) binding.pbCharacterDetailLoading.visibility = View.VISIBLE
+        else {
+            binding.pbCharacterDetailLoading.visibility = View.INVISIBLE
+            binding.characterCardView.visibility = View.VISIBLE
+            binding.characterInfoCardView.visibility = View.VISIBLE
         }
     }
 

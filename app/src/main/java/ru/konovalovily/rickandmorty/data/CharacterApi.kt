@@ -5,16 +5,19 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 import ru.konovalovily.rickandmorty.domain.entity.BaseCharacterResponse
 import ru.konovalovily.rickandmorty.domain.entity.Character
+import ru.konovalovily.rickandmorty.domain.entity.Constants.CHARACTER_ID_RESPONSE
+import ru.konovalovily.rickandmorty.domain.entity.Constants.CHARACTER_RESPONSE
+import ru.konovalovily.rickandmorty.domain.entity.Constants.PAGE_RESPONSE
 
 interface CharacterApi {
 
-    @GET("character/")
+    @GET(CHARACTER_RESPONSE)
     suspend fun getCharacters(
-        @Query("page") page: Int,
+        @Query(PAGE_RESPONSE) page: Int,
     ): BaseCharacterResponse
 
-    @GET("character/{characterId}")
+    @GET("$CHARACTER_RESPONSE/{characterId}")
     suspend fun getCharacterDetail(
-        @Path("characterId") characterId: Int,
+        @Path(CHARACTER_ID_RESPONSE) characterId: Int,
     ): Character
 }

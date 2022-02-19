@@ -7,4 +7,5 @@
     <dimen name="error_message_padding">50dp</dimen>
     <dimen name="text_size_status">14sp</dimen>
     <dimen name="circle_drawable_padding">6dp</dimen>
+    <dimen name="margin_text_view">12dp</dimen>
 </resources>
