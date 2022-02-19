@@ -54,6 +54,16 @@ class CharacterListFragment : Fragment() {
         characterAdapter.onClick = {
             startDescriptionFragment(it)
         }
+        binding.fabEpisodes.setOnClickListener {
+            startEpisodesListFragment()
+        }
+    }
+
+    private fun startEpisodesListFragment(){
+        findNavController().navigate(
+            CharacterListFragmentDirections
+                .actionCharacterListFragmentToEpisodeListFragment(null)
+        )
     }
 
     private fun startDescriptionFragment(characterId: Int) {
@@ -85,7 +95,10 @@ class CharacterListFragment : Fragment() {
             characterAdapter.loadStateFlow.collectLatest {
                 when (it.refresh) {
                     is LoadState.Loading -> binding.pbCharacterLoading.visibility = View.VISIBLE
-                    is LoadState.NotLoading -> binding.pbCharacterLoading.visibility = View.GONE
+                    is LoadState.NotLoading -> {
+                        binding.pbCharacterLoading.visibility = View.GONE
+                        binding.fabEpisodes.visibility = View.VISIBLE
+                    }
                     is LoadState.Error -> snackbar.show()
                 }
             }

@@ -4,13 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.characters.CharacterListFragment">
+    tools:context=".presentation.episode.EpisodeListFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_character_list"
+        android:id="@+id/rv_episode_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/character_item" />
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/episode_item" />
 
     <ProgressBar
         android:id="@+id/pb_character_loading"
@@ -31,17 +33,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_episodes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_text_view"
-        android:contentDescription="@string/episodes"
-        android:visibility="invisible"
-        android:src="@drawable/ic_baseline_list_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
