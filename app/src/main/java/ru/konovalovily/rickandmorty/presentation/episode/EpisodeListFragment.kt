@@ -55,7 +55,7 @@ class EpisodeListFragment : Fragment() {
                 episodeAdapter.submitData(it)
             }
         }
-        viewModel.error.observe(this) {
+        viewModel.error.observe(viewLifecycleOwner) {
             binding.errorMessage.text = it.message
         }
     }
@@ -75,6 +75,12 @@ class EpisodeListFragment : Fragment() {
 
     private fun getFilteredEpisodeList() {
         viewModel.filterEpisodesList(args.episodesList?.toList())
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+
     }
 
 }
