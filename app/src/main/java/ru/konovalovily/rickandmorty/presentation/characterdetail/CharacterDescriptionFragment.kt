@@ -52,7 +52,7 @@ class CharacterDescriptionFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        viewModel.characterInfo.observe(this) {
+        viewModel.characterInfo.observe(viewLifecycleOwner) {
             binding.apply {
                 ivCharacterProfile.load(it.image)
                 tvCharacterName.text = it.name
@@ -64,10 +64,10 @@ class CharacterDescriptionFragment : Fragment() {
                 episodesList = it.episode.toTypedArray()
             }
         }
-        viewModel.loading.observe(this) {
+        viewModel.loading.observe(viewLifecycleOwner) {
             loading(it)
         }
-        viewModel.error.observe(this) {
+        viewModel.error.observe(viewLifecycleOwner) {
             binding.errorMessage.visibility = View.VISIBLE
             binding.pbCharacterDetailLoading.visibility = View.INVISIBLE
         }

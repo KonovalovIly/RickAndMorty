@@ -81,7 +81,7 @@ class CharacterListFragment : Fragment() {
                 characterAdapter.submitData(it)
             }
         }
-        viewModel.error.observe(this) {
+        viewModel.error.observe(viewLifecycleOwner) {
             binding.errorMessage.text = it.message
         }
     }
