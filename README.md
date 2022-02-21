@@ -8,7 +8,6 @@
     - Lifecycle and ViewModel
     - Paging
     - Navigation
-        - SafeArgs
 - Retrofit2
 - Kotlin Coroutines
 - Coil
